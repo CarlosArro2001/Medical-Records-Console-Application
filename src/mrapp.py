@@ -1,7 +1,7 @@
 '''
 M.R Application (Medical Records)
 
-Follows a hierarichical inheritance structure, such that the mrapp.py file is the parent class of the:
+Follows a multiple inheritance structure, such that the mrapp.py file is the parent class of the:
 - staff.py
 - drugs.py
 - prescriptions.py 
