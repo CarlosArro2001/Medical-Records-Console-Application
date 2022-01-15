@@ -1,14 +1,14 @@
 CREATE TABLE staff(
-    Staff_ID int(4) PRIMARY KEY,
+    Staff_ID INTEGER PRIMARY KEY,
     Forename varchar(50),
     Surname varchar(50),
     Department varchar(20),
     Occupation varchar(20)
 );
 
-DROP TABLE drug_inv;
+DROP TABLE staff;
 CREATE TABLE drug_inv(
-    Drug_ID int(6) PRIMARY KEY,
+    Drug_ID INTEGER PRIMARY KEY,
     Drug_Name varchar(50),
     Drug_Route varchar(50),
     Expiration_Date date, /* Date is in this format:' YYYY/MM/DD' */
@@ -16,16 +16,18 @@ CREATE TABLE drug_inv(
 );
 
 INSERT INTO staff VALUES('2835','Carlos','Arro','I.T','I.T Support')
+INSERT INTO staff(Forename,Surname,Department,Occupation) VALUES('Ray','Johnson','Doctor','General Practioner Doctor')
 INSERT INTO staff VALUES('1432','Ryan','Bryson','Nurse','Junior Nurse')
 INSERT INTO staff VALUES('12','Ryan','Bryson','Nurse','Junior Nurse')
 SELECT * FROM staff;
-
-INSERT INTO drug_inv VALUES(1,'Panadol , pain reliver','Oral Capsule (325mg;500mg)','2022/10/12',250)
+SELECT * FROM patients;
+INSERT INTO drug_inv(Drug_Name,Drug_Route,Expiration_Date,Stock)  VALUES('Panadol , pain reliver','Oral Capsule (325mg;500mg)','2022/10/12',250)
 SELECT * FROM drug_inv
+DROP TABLE drug_inv
 
 
 CREATE TABLE patients(
-    Patient_ID int(6) AUTOINCREMENT PRIMARY KEY ,
+    Patient_ID INTEGER  PRIMARY KEY,
     Name varchar(50),
     Age int(3),
     Height float,
@@ -33,7 +35,36 @@ CREATE TABLE patients(
     Medical_History Text
 );
 
-DROP table patients
-INSERT INTO patients(Name,Age,Height,Weight,Medical_History)
-VALUES('William Gate',1.62,60.2,'Has type 2 diabetes');
+DROP TABLE patients
+SELECT * FROM patients
+INSERT INTO patients(Name,Age,Height,Weight,Medical_History) VALUES('Mary Lay',40,1.50,54.0,'N/A');
+DELETE FROM patients WHERE Patient_ID = 2
+PRAGMA foreign_keys=ON;
+CREATE TABLE Prescriptions(
+    Prescript_ID INTEGER PRIMARY KEY,
+    Drug_ID INTEGER NOT NULL REFERENCES drug_inv(Drug_ID), 
+    Doctor_ID INTEGER NOT NULL REFERENCES staff(Staff_ID),
+    Patient_ID INTEGER NOT NULL REFERENCES patients(Patient_ID),
+    Note TEXT, 
+    Date date
+);
 
+
+
+/* Prescription Data test */
+DROP TABLE Prescriptions
+INSERT INTO Prescriptions(DRUG_ID,Doctor_ID,Patient_ID,Note,Date) VALUES(1,2836,1,'Take 2 every 6 hours','2022/01/15');
+COMMIT;
+INSERT INTO Prescriptions(DRUG_ID,Doctor_ID,Patient_ID,Note,Date) VALUES(1,2837,2,'Take 2 every 6 hours','2022/01/15');
+COMMIT;
+
+SELECT * FROM Prescriptions
+
+
+/* CREATING Appointments table */ 
+
+CREATE TABLE Appointments(
+    Appoint_ID INTEGER PRIMARY KEY,
+    Doctor_ID INTEGER,
+    Patient_ID INTEGER, 
+);

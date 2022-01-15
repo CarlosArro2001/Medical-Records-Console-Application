@@ -14,7 +14,8 @@ from staff import staff
 from appointments import appointments
 from drugs import drugs
 from prescriptions import prescriptions
-import sys 
+import sys
+import os  
 
 class mrapp(staff,appointments,drugs,prescriptions):
     def getMenu():
