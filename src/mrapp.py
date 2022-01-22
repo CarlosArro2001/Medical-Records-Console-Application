@@ -48,16 +48,16 @@ class mrapp(staff,appointments,drugs,prescriptions,patients):
                 if choice == 4 : pr.getPrescriptions()
                 if choice == 5 : pt.getPatients()
                 if choice == 6 : st.setStaff()
-                if choice == 7 : print('Add to drug inventory')
-                if choice == 8 : print('Add a prescription')
-                if choice == 9 : print('Add a patient')
+                if choice == 7 : dr.setDrugs()
+                if choice == 8 : pr.setPrescriptions()
+                if choice == 9 : pt.setPatients()
                 if choice == 10 : sys.exit('Closing the Application.')
                 if choice < 0 : 
                     raise ValueError
-                if choice > 8 : 
+                if choice > 10 : 
                     raise ValueError
             except ValueError:
-                print('Only Integer numbers between 1 - 5 should be entered in the main menu.')
+                print('Only Integer numbers between 1 - 10 should be entered in the main menu.')
             
 
     getMenu()
