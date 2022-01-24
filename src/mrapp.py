@@ -21,10 +21,26 @@ import os
 
 class mrapp(staff,appointments,drugs,prescriptions,patients):
     def getMenu():
+        #LOGIN TEST SECTION 
+        TestUser,TestPass = 'admin1' , '1nimda' 
+        try:
+            print('M.R Console Application Login')
+            Tries = 0 
+            while(Tries <=3):
+                username = input('Enter username: ')
+                password = input('Enter password: ')
+                if((username != TestUser) or (password != TestPass)):
+                    print("Incorrect username or password")
+                    Tries+=1
+            if(Tries >3):
+                raise ValueError('Incorrect login details, login attempts used up')
+        except ValueError as ve:
+            print(ve)
+            sys.exit('Closing the Application.')
         choice = 0
-        while choice!= 10 :
+        while choice!= 10:
             try:
-                print('\t \t \t \t \t M.R Application')
+                print('\t \t \t \t \t Medical Records  Application')
                 print('\t \t \t To view staff list enter : 1')
                 print('\t \t \t To view drug inventory enter : 2')
                 print('\t \t \t To appointment lists enter : 3')
