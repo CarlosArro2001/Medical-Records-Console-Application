@@ -1,5 +1,6 @@
 import sqlite3
 class prescriptions:
+    #Returning the prescriptions from prescriptions table and storing them into a list
     def getPrescriptions(self):
         con = sqlite3.connect('mrdb.db')
         cur = con.cursor()
@@ -8,6 +9,7 @@ class prescriptions:
         for i in li:
             print(' Prescript_ID : {0} \n Drug Name : {1} \n Doctor : {2} \n Patient Name : {3} \n Note : {4} \n Date : {5} '.format(i[0],i[1],i[2],i[3],i[4],i[5]))
     
+    #Entering a prescription entry into the prescription table 
     def setPrescriptions(self):
         con = sqlite3.connect('mrdb.db')
         cur = con.cursor()

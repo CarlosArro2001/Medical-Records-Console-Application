@@ -34,22 +34,21 @@ CREATE TABLE Prescriptions(
     Date date /* Date is in this format:' YYYY/MM/DD' */
 );
 /* CREATING Appointments table */ 
-
+ 
 CREATE TABLE Appointments(
     Appoint_ID INTEGER PRIMARY KEY,
-    Doctor_ID INTEGER REFERENCES staff(Staff_ID),
-    Patient_ID INTEGER REFERENCES patients(Patient_ID),
-    Prescript_ID INTEGER REFERENCES Prescriptions(Prescript_ID),
-    Date date,
+    Doctor_name varchar(50),
+    Patient_name varchar(50),
+    Date date, /* Date is in this format:' YYYY/MM/DD' */
     Time varchar(7),
     Status varchar(9),
-    CHECK(Status == 'pending' OR Status =='Current' OR Status =='Completed')
+    CHECK(Status == 'pending' OR Status = 'Pending' OR Status == 'current' OR Status =='Current' OR Status =='completed' OR Status =='Completed')
 );
 
-DROP Table Prescriptions
+DROP Table Appointments;
 
 SELECT * FROM Appointments;
 SELECT * FROM Staff;
-SELECT * FROM Prescriptions;
 SELECT * FROM patients;
+SELECT * FROM Prescriptions;
 SELECT * FROM drug_inv;

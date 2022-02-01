@@ -1,5 +1,6 @@
 import sqlite3
 class patients():
+    #Returning the patients  from patients table and storing them into a list 
     def getPatients(self):
         con = sqlite3.connect('mrdb.db')
         cur = con.cursor()
@@ -7,7 +8,9 @@ class patients():
         staff_li = list(cur.execute(query))
         for i in staff_li:
             print(' Patient ID : {0} \n Name : {1} \n Age : {2} \n Sex : {3} \n Height : {4} \n Weight : {5} \n Medical History : {6}  \n'.format(i[0],i[1],i[2],i[3],i[4],i[5],i[6]))
-
+        con.close()
+        
+    #Entering a new patient entry into the patient table  
     def setPatients(self):
         con = sqlite3.connect('mrdb.db')
         cur = con.cursor()

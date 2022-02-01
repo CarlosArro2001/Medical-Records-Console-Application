@@ -5,8 +5,8 @@ Follows a multiple inheritance structure, such that the mrapp.py file is the par
 - staff.py
 - drugs.py
 - prescriptions.py 
--appointments.py
-- patients
+- appointments.py
+- patients.py
 classes
 
 '''
@@ -16,29 +16,28 @@ from appointments import appointments
 from drugs import drugs
 from prescriptions import prescriptions
 from patients import patients
+import authentication
 import sys
-import os  
 
 class mrapp(staff,appointments,drugs,prescriptions,patients):
     def getMenu():
-        #LOGIN TEST SECTION 
-        TestUser,TestPass = 'admin1' , '1nimda' 
-        try:
-            print('M.R Console Application Login')
-            Tries = 0 
-            while(Tries <=3):
-                username = input('Enter username: ')
-                password = input('Enter password: ')
-                if((username != TestUser) or (password != TestPass)):
-                    print("Incorrect username or password")
-                    Tries+=1
-            if(Tries >3):
-                raise ValueError('Incorrect login details, login attempts used up')
-        except ValueError as ve:
-            print(ve)
-            sys.exit('Closing the Application.')
+        #LOGIN SECTION:
+        print('-------------- Medical Records Console App LOGIN --------------')
+        counter = 3
+        while(authentication.login() == False):
+            authentication.login()
+            if(authentication.login() == True):
+                break
+            else: 
+                counter -= 1
+                print('Login attempts left : {0}/3 .'.format(counter))
+            if(counter <= 0):
+                print('Used all login attempts.')
+                sys.exit('Closing application')
+            
+        # Displaying the main menu 
         choice = 0
-        while choice!= 10:
+        while choice!= 11:
             try:
                 print('\t \t \t \t \t Medical Records  Application')
                 print('\t \t \t To view staff list enter : 1')
@@ -50,8 +49,8 @@ class mrapp(staff,appointments,drugs,prescriptions,patients):
                 print('\t \t \t To add a drug to inventory enter : 7')
                 print('\t \t \t To add a prescription enter : 8')
                 print('\t \t \t To add a patient enter : 9')
-                print('\t \t \t To exit/close the application enter : 10')
-                print('\t \t \t \t Enter : ')
+                print('\t \t \t To add an appointment enter : 10')
+                print('\t \t \t To exit/close the application enter : 11')
                 st = staff()
                 dr = drugs()
                 ap = appointments()
@@ -67,7 +66,8 @@ class mrapp(staff,appointments,drugs,prescriptions,patients):
                 if choice == 7 : dr.setDrugs()
                 if choice == 8 : pr.setPrescriptions()
                 if choice == 9 : pt.setPatients()
-                if choice == 10 : sys.exit('Closing the Application.')
+                if choice == 10 : ap.setAppointments()
+                if choice == 11 : sys.exit('Closing the application')
                 if choice < 0 : 
                     raise ValueError
                 if choice > 10 : 
