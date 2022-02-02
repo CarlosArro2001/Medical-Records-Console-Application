@@ -45,6 +45,19 @@ CREATE TABLE Appointments(
     CHECK(Status == 'pending' OR Status = 'Pending' OR Status == 'current' OR Status =='Current' OR Status =='completed' OR Status =='Completed')
 );
 
+
+CREATE TABLE users(
+    userID INTEGER PRIMARY KEY,
+    user_name varchar(20),
+    user_pass nvarchar(50),
+    user_role varchar(20),
+    pass_key nvarchar(50),
+    CHECK(user_role == 'Admin' OR user_role == 'Senior Staff' OR user_role == 'IT')
+);
+
+
+
+SELECT * FROM users;
 DROP Table Appointments;
 
 SELECT * FROM Appointments;
