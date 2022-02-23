@@ -16,17 +16,18 @@ from appointments import appointments
 from drugs import drugs
 from prescriptions import prescriptions
 from patients import patients
-import authentication
+from authentication import authentication
 import sys
 
 class mrapp(staff,appointments,drugs,prescriptions,patients):
     def getMenu():
         #LOGIN SECTION:
+        auth = authentication()
         print('-------------- Medical Records Console App LOGIN --------------')
         counter = 3
-        while(authentication.login() == False):
-            authentication.login()
-            if(authentication.login() == True):
+        while(auth.login() == False):
+            auth.login()
+            if(auth.login() == True):
                 break
             else: 
                 counter -= 1

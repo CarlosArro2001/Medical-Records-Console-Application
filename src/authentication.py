@@ -1,13 +1,24 @@
+'''
+Date : 23/02/2022
+Author: Carlos Raniel Ariate Arro 
+Changes : 
+    1. Implemented the getpass module and function for the password input in register and login methods 
+
+Note: 
+username = Carlos 
+password = solrac2001
+'''
+import getpass
 import sqlite3 
 from cryptography.fernet import Fernet 
-
+import getpass
 class authentication:
 
     def register(self):
         conn = sqlite3.connect('mrdb.db')
         cur = conn.cursor()
         user =  input('Enter username: ')
-        passw = bytes(input('Enter a password: '),'utf-8')
+        passw = bytes(getpass.getpass('Enter a password: '),'utf-8')
         role = ''
         flag = False
         while(flag == False):
@@ -24,7 +35,7 @@ class authentication:
         conn = sqlite3.connect('mrdb.db')
         cur = conn.cursor()
         user = input('Enter username : ')
-        passw = bytes(input('Enter password : '),'utf-8')
+        passw = bytes(getpass.getpass('Enter password : '),'utf-8')
         key = None
         temp_li = list(cur.execute('SELECT * FROM users'))
         for i in temp_li:
@@ -36,4 +47,5 @@ class authentication:
                 print('Invalid username or password')
                 return False
 
-
+# auth = authentication()
+# auth.register()
