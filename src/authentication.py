@@ -3,7 +3,7 @@ Date : 23/02/2022
 Author: Carlos Raniel Ariate Arro 
 Changes : 
     1. Implemented the getpass module and function for the password input in register and login methods 
-
+    
 Note: 
 username = Carlos 
 password = solrac2001

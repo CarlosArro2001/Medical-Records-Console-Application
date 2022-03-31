@@ -17,10 +17,18 @@ from drugs import drugs
 from prescriptions import prescriptions
 from patients import patients
 from authentication import authentication
+from crud import crud
 import sys
 
-class mrapp(staff,appointments,drugs,prescriptions,patients):
-    def getMenu():
+# class mrapp(staff,appointments,drugs,prescriptions,patients):
+class mrapp:
+    def getMenu(self):
+        st = staff()
+        dr = drugs()
+        ap = appointments()
+        pr = prescriptions()
+        pt = patients()
+        cr = crud()
         #LOGIN SECTION:
         auth = authentication()
         print('-------------- Medical Records Console App LOGIN --------------')
@@ -52,22 +60,18 @@ class mrapp(staff,appointments,drugs,prescriptions,patients):
                 print('\t \t \t To add a patient enter : 9')
                 print('\t \t \t To add an appointment enter : 10')
                 print('\t \t \t To exit/close the application enter : 11')
-                st = staff()
-                dr = drugs()
-                ap = appointments()
-                pr = prescriptions()
-                pt = patients()
+                
                 choice = int(input(''))
-                if choice == 1 : st.getStaff()
-                if choice == 2 : dr.getdrugs()
-                if choice == 3 : ap.getAppointments()
-                if choice == 4 : pr.getPrescriptions()
-                if choice == 5 : pt.getPatients()
-                if choice == 6 : st.setStaff()
-                if choice == 7 : dr.setDrugs()
-                if choice == 8 : pr.setPrescriptions()
-                if choice == 9 : pt.setPatients()
-                if choice == 10 : ap.setAppointments()
+                if choice == 1 : st.getStaff(cr.returnStaff())
+                if choice == 2 : dr.getdrugs(cr.returnDrugs())
+                if choice == 3 : ap.getAppointments(cr.returnAppointment())
+                if choice == 4 : pr.getPrescriptions(cr.returnPrescriptions())
+                if choice == 5 : pt.getPatients(cr.returnPatients())
+                if choice == 6 : cr.createStaff(st.newStaff())
+                if choice == 7 : cr.createDrug(dr.setDrugs())
+                if choice == 8 : cr.createPrescription(pr.setPrescriptions())
+                if choice == 9 : cr.createPatient(pt.setPatients())
+                if choice == 10 :cr.createAppointment(ap.setAppointments())
                 if choice == 11 : sys.exit('Closing the application')
                 if choice < 0 : 
                     raise ValueError
@@ -77,8 +81,9 @@ class mrapp(staff,appointments,drugs,prescriptions,patients):
                 print('Only Integer numbers between 1 - 10 should be entered in the main menu.')
             
 
-    getMenu()
+m = mrapp()
 
+m.getMenu()
 
 
 
