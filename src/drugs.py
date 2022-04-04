@@ -13,3 +13,4 @@ class drugs:
         stock = int(input('Enter stock'))
         self.name,self.route,self.expire,self.stock = drug_name,route,expire,stock
         return [self.name,self.route,self.expire,self.stock]
+        
