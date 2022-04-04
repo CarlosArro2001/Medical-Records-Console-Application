@@ -56,10 +56,10 @@ class crud:
         patient_records = list(cur.execute('''SELECT * from patients'''))
         return patient_records
     
-    def createPrescription(self):
+    def createPrescription(self,prescription):
         con = sqlite3.connect('mrdb.db')
         cur = con.cursor()
-        con.execute('INSERT INTO Prescriptions(Drug_Name,Doctor_Name,Patient_Name,Note,Date) VALUES(?,?,?,?,?)',(Drug_Name,Doctor_Name,Patient_Name,Note,Date))
+        con.execute('INSERT INTO Prescriptions(Drug_Name,Doctor_Name,Patient_Name,Note,Date) VALUES(?,?,?,?,?)',(prescription[0],prescription[1],prescription[2],prescription[3],prescription[4]))
         con.commit()
         print('New entry added')
 
